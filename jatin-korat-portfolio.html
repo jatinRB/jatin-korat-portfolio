@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jatin Korat — Senior iOS Developer &amp; Team Lead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14161B;
+    --paper:#F6F5F2;
+    --paper-raised:#FFFFFF;
+    --line:#DEDBD3;
+    --blue:#2F5FE0;
+    --orange:#FA7343;
+    --muted:#6B6F76;
+    --mono: 'IBM Plex Mono', monospace;
+    --disp: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --radius: 3px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation:none !important; transition:none !important; }
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(246,245,242,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:920px;
+    margin:0 auto;
+    padding:16px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .nav-mark{
+    font-family:var(--mono);
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:0.02em;
+  }
+  .nav-mark span{ color:var(--blue); }
+  .nav-links{
+    display:flex;
+    gap:24px;
+    list-style:none;
+    margin:0; padding:0;
+    font-family:var(--mono);
+    font-size:13px;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:var(--muted);
+    padding:2px 0;
+    border-bottom:1px solid transparent;
+  }
+  .nav-links a:hover{ color:var(--ink); border-bottom-color:var(--ink); }
+  .nav-toggle{ display:none; }
+
+  @media (max-width:640px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:88px 0 56px;
+  }
+  .hero-kicker{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--muted);
+    margin:0 0 18px;
+  }
+  h1.name{
+    font-family:var(--disp);
+    font-weight:700;
+    font-size:clamp(40px, 6vw, 64px);
+    line-height:1.02;
+    margin:0 0 8px;
+    letter-spacing:-0.01em;
+  }
+  .role{
+    font-family:var(--disp);
+    font-weight:500;
+    font-size:clamp(19px, 2.4vw, 24px);
+    color:var(--blue);
+    margin:0 0 28px;
+  }
+  .pitch{
+    max-width:56ch;
+    font-size:18px;
+    color:#33363C;
+    margin:0 0 36px;
+  }
+
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 20px;
+    font-family:var(--mono);
+    font-size:13.5px;
+    color:var(--muted);
+    margin-bottom:44px;
+  }
+  .contact-row a{ text-decoration:none; color:var(--muted); border-bottom:1px solid var(--line); }
+  .contact-row a:hover{ color:var(--ink); border-bottom-color:var(--ink); }
+
+  .build-bar{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:#2E7D4F;
+    background:#EAF4EC;
+    border:1px solid #CFE7D5;
+    border-radius:var(--radius);
+    padding:5px 10px 5px 8px;
+    margin-bottom:36px;
+  }
+  .build-dot{
+    width:7px; height:7px; border-radius:50%;
+    background:#2E7D4F;
+    flex-shrink:0;
+  }
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3, auto);
+    gap:36px;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+  }
+  .stat-num{
+    font-family:var(--disp);
+    font-weight:700;
+    font-size:32px;
+    color:var(--ink);
+    line-height:1;
+  }
+  .stat-label{
+    font-size:13.5px;
+    color:var(--muted);
+    margin-top:6px;
+  }
+  @media (max-width:560px){
+    .stats{ grid-template-columns:repeat(3,1fr); gap:16px; }
+    .stat-num{ font-size:24px; }
+    .stat-label{ font-size:12px; }
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:64px 0; border-top:1px solid var(--line); }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:36px;
+  }
+  h2.section-title{
+    font-family:var(--disp);
+    font-weight:600;
+    font-size:28px;
+    margin:0;
+  }
+  .section-count{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about p{
+    max-width:68ch;
+    font-size:17px;
+    color:#2A2C31;
+  }
+
+  /* ---------- EXPERIENCE (git-log timeline) ---------- */
+  .timeline{
+    position:relative;
+    padding-left:28px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:5px; top:6px; bottom:6px;
+    width:1px;
+    background:var(--line);
+  }
+  .entry{
+    position:relative;
+    padding-bottom:44px;
+  }
+  .entry:last-child{ padding-bottom:0; }
+  .entry::before{
+    content:"";
+    position:absolute;
+    left:-28px; top:6px;
+    width:11px; height:11px;
+    border-radius:50%;
+    background:var(--paper-raised);
+    border:2px solid var(--blue);
+  }
+  .entry.current::before{ background:var(--blue); }
+
+  .entry-date{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .entry-title{
+    font-family:var(--disp);
+    font-weight:600;
+    font-size:19px;
+    margin:0 0 2px;
+  }
+  .entry-org{
+    font-size:14.5px;
+    color:var(--muted);
+    margin-bottom:14px;
+  }
+  .entry-org strong{ color:var(--ink); font-weight:500; }
+  .entry-body p{
+    max-width:64ch;
+    font-size:15.5px;
+    color:#2A2C31;
+    margin:0 0 14px;
+  }
+  .stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px;
+  }
+  .stack span{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:3px 8px;
+    background:var(--paper-raised);
+  }
+
+  .sub-projects{
+    margin-top:16px;
+    border-left:2px solid var(--line);
+    padding-left:16px;
+  }
+  .sub-project{ margin-bottom:16px; }
+  .sub-project:last-child{ margin-bottom:0; }
+  .sub-project-name{
+    font-family:var(--disp);
+    font-weight:600;
+    font-size:15.5px;
+    margin-bottom:3px;
+  }
+  .sub-project-name .sp-date{
+    font-family:var(--mono);
+    font-weight:400;
+    font-size:12px;
+    color:var(--muted);
+    margin-left:8px;
+  }
+  .sub-project p{
+    font-size:14.5px;
+    color:#3A3D43;
+    margin:0;
+    max-width:62ch;
+  }
+
+  /* ---------- PROJECTS (App Store row list) ---------- */
+  .app-row{
+    display:grid;
+    grid-template-columns:52px 1fr auto;
+    gap:18px;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .app-row:first-child{ padding-top:0; }
+  .app-row:last-child{ border-bottom:none; }
+  .app-icon{
+    width:52px; height:52px;
+    border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--disp);
+    font-weight:700;
+    font-size:19px;
+    color:#fff;
+  }
+  .app-name{
+    font-family:var(--disp);
+    font-weight:600;
+    font-size:17.5px;
+    margin:0 0 6px;
+  }
+  .app-desc{
+    font-size:15px;
+    color:#2A2C31;
+    margin:0 0 10px;
+    max-width:58ch;
+  }
+  .app-meta{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--muted);
+  }
+  .app-date{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--muted);
+    white-space:nowrap;
+    text-align:right;
+    padding-top:4px;
+  }
+  @media (max-width:640px){
+    .app-row{ grid-template-columns:44px 1fr; }
+    .app-date{ grid-column:2; text-align:left; padding-top:0; }
+    .app-icon{ width:44px; height:44px; border-radius:10px; font-size:16px; }
+  }
+
+  /* ---------- SKILLS (manifest / code block) ---------- */
+  .manifest{
+    background:#1B1E24;
+    color:#D9DCE3;
+    border-radius:6px;
+    overflow:hidden;
+    font-family:var(--mono);
+    font-size:13.5px;
+    line-height:1.85;
+  }
+  .manifest-titlebar{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:11px 16px;
+    background:#22262E;
+    border-bottom:1px solid #2E323B;
+  }
+  .manifest-titlebar span{
+    width:10px; height:10px; border-radius:50%;
+    background:#3A3F49;
+  }
+  .manifest-filename{
+    margin-left:8px;
+    font-size:12.5px;
+    color:#8B909B;
+  }
+  .manifest-body{
+    padding:20px 22px 24px;
+    overflow-x:auto;
+  }
+  .manifest-comment{ color:#6B93C9; }
+  .manifest-line{ color:#D9DCE3; white-space:pre-wrap; word-break:break-word; }
+  .manifest-group{ margin-bottom:18px; }
+  .manifest-group:last-child{ margin-bottom:0; }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:6px 24px;
+  }
+  .edu-degree{
+    font-family:var(--disp);
+    font-weight:600;
+    font-size:18px;
+  }
+  .edu-school{
+    font-size:14.5px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+  .edu-year{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--muted);
+  }
+  .edu-note{
+    margin-top:20px;
+    font-size:15px;
+    color:#2A2C31;
+    max-width:64ch;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:64px 0 56px;
+    border-top:1px solid var(--line);
+  }
+  .footer-cta{
+    font-family:var(--disp);
+    font-weight:600;
+    font-size:clamp(26px,4vw,36px);
+    margin:0 0 20px;
+    max-width:18ch;
+  }
+  .footer-contact{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 28px;
+    font-family:var(--mono);
+    font-size:14px;
+  }
+  .footer-contact a{
+    text-decoration:none;
+    color:var(--ink);
+    border-bottom:1px solid var(--ink);
+  }
+  .footer-fine{
+    margin-top:40px;
+    font-size:12.5px;
+    color:var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">jatin<span>.</span>korat</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <p class="hero-kicker">Portfolio — 2026</p>
+    <h1 class="name">Jatin Korat</h1>
+    <p class="role">Senior iOS Developer &amp; Team Lead</p>
+    <p class="pitch">I own iOS products end to end — architecture, code, and App Store release — and I build the teams that ship them. Nine years across fintech, gamification, and consumer apps on Swift and SwiftUI.</p>
+
+    <div class="contact-row">
+      <a href="mailto:jrbkorat159@gmail.com">jrbkorat159@gmail.com</a>
+      <a href="tel:+919909067936">+91 99090 67936</a>
+      <span>Surat, Gujarat, India</span>
+    </div>
+
+    <div class="build-bar">
+      <span class="build-dot"></span>
+      Build succeeded — 8+ apps live on the App Store
+    </div>
+
+    <div class="stats">
+      <div>
+        <div class="stat-num">9</div>
+        <div class="stat-label">Years in iOS</div>
+      </div>
+      <div>
+        <div class="stat-num">10</div>
+        <div class="stat-label">Engineers led on one team</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Apps owned solo, 2023–present</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="section-head">
+      <h2 class="section-title">About</h2>
+    </div>
+    <p>I've spent the last nine years turning product ideas into scalable, production-grade iOS apps — starting as a junior developer bridging client requirements into scoped tasks, and now leading architecture, mentoring, and full lifecycle delivery as a lead engineer. I care about shipping quality on schedule as much as I care about the codebase the next engineer inherits: clear architecture, real test coverage, and code reviews that actually teach something. Lately I've been pushing further into mobile performance, cloud infrastructure, and observability — the parts of the job that keep an app reliable long after launch day.</p>
+  </section>
+
+  <section id="experience">
+    <div class="section-head">
+      <h2 class="section-title">Experience</h2>
+      <span class="section-count">2016 — present</span>
+    </div>
+
+    <div class="timeline">
+
+      <div class="entry current">
+        <div class="entry-date">March 2023 — Present</div>
+        <div class="entry-title">Lead Software Engineer</div>
+        <div class="entry-org"><strong>Logicbuzz Infotech LLP</strong></div>
+        <div class="entry-body">
+          <p>Lead iOS developer owning end-to-end delivery of four independent production apps — directing architecture, mentoring team members on Swift best practices, and managing the full lifecycle from design through App Store release.</p>
+        </div>
+        <div class="sub-projects">
+          <div class="sub-project">
+            <div class="sub-project-name">Video Meeting (Online Meeting)<span class="sp-date">Sep – Dec 2025</span></div>
+            <p>Live video conferencing app for iPhone, iPad, Mac, and visionOS — HD calling, screen sharing, in-call group chat, and StoreKit subscriptions localised across 8 languages. Six production releases in three months, 5-star App Store rating throughout.</p>
+          </div>
+          <div class="sub-project">
+            <div class="sub-project-name">Resume Builder &amp; CV Maker<span class="sp-date">Feb – May 2025</span></div>
+            <p>ATS-optimised resume and cover letter builder with live preview and a rich-formatting document editor. On-device PDF generation via PDFKit, zero server-side dependency.</p>
+          </div>
+          <div class="sub-project">
+            <div class="sub-project-name">QR Code &amp; Barcode Scanner<span class="sp-date">Mar – Apr 2024</span></div>
+            <p>Full scanning app built on AVFoundation, Vision, and VisionKit — QR/barcode recognition, real-world object detection, lottery ticket scanning, and on-device image-to-PDF conversion.</p>
+          </div>
+          <div class="sub-project">
+            <div class="sub-project-name">Share Me (File Sharing)<span class="sp-date">Apr – Jun 2023</span></div>
+            <p>Peer-to-peer device discovery and transfer app on Apple's NetService/Bonjour API, with secure connection handling and state management across foreground, background, and interrupted states.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-date">March 2022 — March 2023</div>
+        <div class="entry-title">Senior Software Engineer</div>
+        <div class="entry-org"><strong>Augusta Hitech</strong> — Skylab Apps, team of 60</div>
+        <div class="entry-body">
+          <p>Led and mentored a team of 10 iOS developers on Skylab Apps, a turn-key gamification platform letting influencers and brands launch branded iOS apps with community, monetisation, and engagement features. Owned architecture, code reviews, and Swift codebase standards while directing delivery of in-app chat, gamified courses, community wall, and in-app purchases. Managed Git and Jira sprint ownership, hosted client demos, and drove UAT across a 60-person org.</p>
+        </div>
+        <div class="stack">
+          <span>Swift</span><span>SwiftUI</span><span>REST APIs</span><span>Git</span><span>Jira</span><span>Agile Scrum</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-date">March 2021 — March 2022</div>
+        <div class="entry-title">Senior Software Engineer</div>
+        <div class="entry-org"><strong>Calance Software Pvt. Ltd.</strong> — OpenEdge SDK, Global Payments Integrated</div>
+        <div class="entry-body">
+          <p>Led iOS SDK development for a US fintech subsidiary of Global Payments (S&amp;P 500), directing architecture, code reviews, and Swift codebase standards. Delivered UI implementation, REST API integration, payment processing flows, and unit test suites across Agile Scrum sprints, plus Git and Jira sprint ownership and UAT delivery.</p>
+        </div>
+        <div class="stack">
+          <span>Swift</span><span>Xcode</span><span>REST APIs</span><span>Unit Testing</span><span>Git</span><span>Jira</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-date">March 2016 — February 2021</div>
+        <div class="entry-title">Junior iOS Developer</div>
+        <div class="entry-org">Xion Software → Innovative Iteration → Varsha Weblabs → Frontlink Technology</div>
+        <div class="entry-body">
+          <p>Built ownership and task prioritisation across sprint cycles, with clear scope and early issue escalation. Fostered a collaborative engineering culture through PR reviews and knowledge-sharing sessions. Strengthened product thinking through direct client and designer collaboration, design workshops, and hackathons — and adopted behavioural testing practices along the way.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <h2 class="section-title">Featured apps</h2>
+      <span class="section-count">Logicbuzz, 2023–2025</span>
+    </div>
+
+    <div class="app-list">
+      <div class="app-row">
+        <div class="app-icon" style="background:#2F5FE0;">VM</div>
+        <div>
+          <p class="app-name">Video Meeting</p>
+          <p class="app-desc">Live HD video conferencing with screen sharing and group chat, built for iPhone, iPad, Mac, and visionOS.</p>
+          <p class="app-meta">6 releases in 3 months · 5-star rating · localised in 8 languages</p>
+        </div>
+        <div class="app-date">2025</div>
+      </div>
+      <div class="app-row">
+        <div class="app-icon" style="background:#FA7343;">RB</div>
+        <div>
+          <p class="app-name">Resume Builder &amp; CV Maker</p>
+          <p class="app-desc">ATS-optimised resume and cover letter builder with a rich-formatting document editor and live preview.</p>
+          <p class="app-meta">On-device PDF generation, PDFKit · zero server-side dependency</p>
+        </div>
+        <div class="app-date">2025</div>
+      </div>
+      <div class="app-row">
+        <div class="app-icon" style="background:#1B8A5A;">QR</div>
+        <div>
+          <p class="app-name">QR Code &amp; Barcode Scanner</p>
+          <p class="app-desc">Full-featured scanning app covering QR, barcode, object detection, lottery ticket scanning, and image-to-PDF.</p>
+          <p class="app-meta">AVFoundation · Vision · VisionKit</p>
+        </div>
+        <div class="app-date">2024</div>
+      </div>
+      <div class="app-row">
+        <div class="app-icon" style="background:#8B5CF6;">SM</div>
+        <div>
+          <p class="app-name">Share Me</p>
+          <p class="app-desc">Peer-to-peer device discovery and file transfer with secure connection handling across app states.</p>
+          <p class="app-meta">NetService / Bonjour</p>
+        </div>
+        <div class="app-date">2023</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <h2 class="section-title">Skills</h2>
+      <span class="section-count">Package.swift</span>
+    </div>
+
+    <div class="manifest">
+      <div class="manifest-titlebar">
+        <span></span><span></span><span></span>
+        <span class="manifest-filename">dependencies.swift</span>
+      </div>
+      <div class="manifest-body">
+<div class="manifest-group"><span class="manifest-comment">// Languages &amp; frameworks</span>
+<div class="manifest-line">Swift, SwiftUI, UIKit, Objective-C, Combine, Core Data, XCTest, Instruments</div></div>
+<div class="manifest-group"><span class="manifest-comment">// Architecture &amp; practices</span>
+<div class="manifest-line">MVVM, MVC, Clean Architecture, VIPER, TDD, Unit &amp; Integration Testing, Agile/Scrum</div></div>
+<div class="manifest-group"><span class="manifest-comment">// Concurrency &amp; reactive</span>
+<div class="manifest-line">Swift Concurrency, async/await, Actors, Combine, Reactive Programming</div></div>
+<div class="manifest-group"><span class="manifest-comment">// Backend &amp; APIs</span>
+<div class="manifest-line">REST APIs, gRPC, GraphQL</div></div>
+<div class="manifest-group"><span class="manifest-comment">// Database &amp; storage</span>
+<div class="manifest-line">Core Data, SQLite, Realm, MySQL, PostgreSQL</div></div>
+<div class="manifest-group"><span class="manifest-comment">// DevOps &amp; cloud</span>
+<div class="manifest-line">CI/CD, Xcode Cloud, Fastlane</div></div>
+<div class="manifest-group"><span class="manifest-comment">// Tools &amp; ecosystem</span>
+<div class="manifest-line">Xcode, Swift Package Manager, Instruments, Firebase, TestFlight, CocoaPods</div></div>
+<div class="manifest-group"><span class="manifest-comment">// Leadership</span>
+<div class="manifest-line">Team Leadership, Mentoring, Code Reviews, Sprint Ownership, Client Delivery, Cross-functional Collaboration</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head">
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-degree">Bachelor of Engineering — Information Technology</div>
+        <div class="edu-school">Laxmi Institute of Technology, Valsad, Gujarat</div>
+      </div>
+      <div class="edu-year">2017</div>
+    </div>
+    <p class="edu-note">Independently published 8+ live iOS applications on the App Store across iPhone, iPad, Mac, and visionOS, with end-to-end ownership from architecture through release and maintenance. Currently expanding into mobile performance, cloud infrastructure, observability, and site reliability engineering.</p>
+  </section>
+
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <p class="footer-cta">Let's build something worth shipping.</p>
+    <div class="footer-contact">
+      <a href="mailto:jrbkorat159@gmail.com">jrbkorat159@gmail.com</a>
+      <a href="tel:+919909067936">+91 99090 67936</a>
+      <span style="color:#6B6F76;">Surat, Gujarat, India</span>
+    </div>
+    <p class="footer-fine">Jatin Korat — Senior iOS Developer &amp; Team Lead</p>
+  </div>
+</footer>
+
+</body>
+</html>
